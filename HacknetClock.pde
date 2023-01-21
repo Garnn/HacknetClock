@@ -1,11 +1,15 @@
 ScatterLine[] lines;
 PFont Font;
-String hour,minute,second;
+String hour,minute,second,entireTime;
+int TextSizing;
 void setup(){
   size(300,150);
   Font = loadFont("Kremlin-48.vlw");
+  TextSizing = 50;
   textFont(Font);
-  textAlign(CENTER);
+  textAlign(CENTER, CENTER);
+  textSize(TextSizing);
+  surface.setResizable(true);
   lines = new ScatterLine[10];
   for(int i = 0; i<lines.length; i++){
     lines[i]=new ScatterLine();
@@ -19,7 +23,7 @@ void draw(){
   }
   stroke(0);
   fill(0);
-  rect(0,25,width,height-50);
+  rect(0,0.2*height,width,0.6*height);
   fill(255,0,0);
   if (str(hour()).length()==1){
     hour = "0"+str(hour());
@@ -39,5 +43,6 @@ void draw(){
   else{
     second = str(second());
   }
-  text(hour+":"+minute+":"+second,width/2,height/2+18);
+  entireTime = hour+":"+minute+":"+second;
+  text(entireTime,20,0.2*height+20,width-40,0.6*height-40);
 }
